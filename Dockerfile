@@ -9,12 +9,13 @@ LABEL project="Operationalize a Machine Learning Microservice API"
 WORKDIR /app
 
 COPY ./app.py /app/
-COPY ./model_data/* /app/
+COPY ./model_data/* /app/model_data/
+COPY ./requirements.txt /app/
 
 RUN pip install --upgrade pip==19.2.1 &&\
     pip install --trusted-host pypi.python.org -r requirements.txt
 
 EXPOSE 80/tcp
 
-CMD [ "python3", "./app.py" ]
+CMD [ "python", "app.py" ]
 
