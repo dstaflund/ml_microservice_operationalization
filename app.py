@@ -6,22 +6,30 @@ import pandas as pd
 from sklearn.externals import joblib
 from sklearn.preprocessing import StandardScaler
 
+DATA_FILE = "./model_data/boston_housing_prediction.joblib"
+HOST = '0.0.0.0'
+PORT = 80
+DEBUG = True
+
 app = Flask(__name__)
 LOG = create_logger(app)
 LOG.setLevel(logging.INFO)
 
+
 def scale(payload):
     """Scales Payload"""
-    
+
     LOG.info(f"Scaling Payload: \n{payload}")
     scaler = StandardScaler().fit(payload.astype(float))
     scaled_adhoc_predict = scaler.transform(payload.astype(float))
     return scaled_adhoc_predict
 
+
 @app.route("/")
 def home():
     html = f"<h3>Sklearn Prediction Home</h3>"
     return html.format(format)
+
 
 @app.route("/predict", methods=['POST'])
 def predict():
@@ -52,22 +60,25 @@ def predict():
         { "prediction": [ <val> ] }
         
         """
-    
-    # Logging the input payload
+
     json_payload = request.json
     LOG.info(f"JSON payload: \n{json_payload}")
+
     inference_payload = pd.DataFrame(json_payload)
     LOG.info(f"Inference payload DataFrame: \n{inference_payload}")
-    # scale the input
+
     scaled_payload = scale(inference_payload)
-    # get an output prediction from the pretrained model, clf
+    LOG.info(f"Scaled Payload: \n{scaled_payload}")
+
     prediction = list(clf.predict(scaled_payload))
-    # TO DO:  Log the output prediction value
-    json_prediction = { 'prediction': prediction }
-    LOG.info(f"JSON prediction: \n{json_prediction}")
-    return jsonify(json_prediction)
+    LOG.info(f"Prediction: \n{prediction}")
+
+    json_response = {'prediction': prediction}
+    LOG.info(f"JSON response: \n{json_response}")
+
+    return jsonify(json_response)
+
 
 if __name__ == "__main__":
-    # load pretrained model as clf
-    clf = joblib.load("./model_data/boston_housing_prediction.joblib")
-    app.run(host='0.0.0.0', port=80, debug=True) # specify port=80
+    clf = joblib.load(DATA_FILE)
+    app.run(host=HOST, port=PORT, debug=DEBUG)
