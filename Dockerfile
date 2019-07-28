@@ -1,18 +1,20 @@
 FROM python:3.7.3-stretch
 
-## Step 1:
-# Create a working directory
+LABEL maintainer="d.staflund@gmail.com"
+LABEL institution="Udacity"
+LABEL nanodegree="Cloud DevOps Engineer Nanodegree Program"
+LABEL lesson="Microservices at Scale using AWS and Kubernetes"
+LABEL project="Operationalize a Machine Learning Microservice API"
 
-## Step 2:
-# Copy source code to working directory
+WORKDIR /app
 
-## Step 3:
-# Install packages from requirements.txt
-# hadolint ignore=DL3013
+COPY ./app.py /app/
+COPY ./model_data/* /app/
 
-## Step 4:
-# Expose port 80
+RUN pip install --upgrade pip==19.2.1 &&\
+    pip install --trusted-host pypi.python.org -r requirements.txt
 
-## Step 5:
-# Run app.py at container launch
+EXPOSE 80/tcp
+
+CMD [ "python3", "./app.py" ]
 
