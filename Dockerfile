@@ -3,7 +3,7 @@ FROM python:3.7.3-stretch
 LABEL maintainer="d.staflund@gmail.com"
 LABEL institution="Udacity"
 LABEL nanodegree="Cloud DevOps Engineer Nanodegree Program"
-LABEL lesson="Microservices at Scale using AWS and Kubernetes"
+LABEL course="Microservices at Scale using AWS and Kubernetes"
 LABEL project="Operationalize a Machine Learning Microservice API"
 
 WORKDIR /app
