@@ -1,15 +1,8 @@
 #!/usr/bin/env bash
-# This file tags and uploads an image to Docker Hub
 
-# Assumes that an image is built via `run_docker.sh`
+dockerpath=dstaflund/prediction:1.0
 
-# Step 1:
-# Create dockerpath
-# dockerpath=<your docker ID/path>
-
-# Step 2:  
-# Authenticate & tag
 echo "Docker ID and Image: $dockerpath"
-
-# Step 3:
-# Push image to a docker repository
+cat ./password.txt | docker login -u dstaflund --password-stdin
+docker tag ${dockerpath} ${dockerpath}
+docker push ${dockerpath}
