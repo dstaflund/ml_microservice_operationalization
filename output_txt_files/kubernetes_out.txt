@@ -1,1 +1,22 @@
-<paste log output from Kubernetes-mediated prediction, here>
+#
+#   First try -- encountered ContainerCreating / Pending status
+#
+(.devops) dstaflund@dev-laptop-1:~/IdeaProjects/DevOps_Microservices$ ./run_kubernetes.sh
+kubectl run --generator=deployment/apps.v1 is DEPRECATED and will be removed in a future version. Use kubectl run --generator=run-pod/v1 or kubectl create instead.
+deployment.apps/prediction created
+NAME                          READY   STATUS              RESTARTS   AGE
+prediction-66965b64b6-tdntk   0/1     ContainerCreating   0          0s
+error: unable to forward port because pod is not running. Current status=Pending
+
+
+#
+#   Second try (about 45 seconds later) -- everything ran well
+#
+(.devops) dstaflund@dev-laptop-1:~/IdeaProjects/DevOps_Microservices$ ./run_kubernetes.sh
+kubectl run --generator=deployment/apps.v1 is DEPRECATED and will be removed in a future version. Use kubectl run --generator=run-pod/v1 or kubectl create instead.
+Error from server (AlreadyExists): deployments.apps "prediction" already exists
+NAME                          READY   STATUS    RESTARTS   AGE
+prediction-66965b64b6-tdntk   1/1     Running   0          42s
+Forwarding from 127.0.0.1:8000 -> 80
+Forwarding from [::1]:8000 -> 80
+Handling connection for 8000
