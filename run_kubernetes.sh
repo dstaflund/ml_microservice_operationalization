@@ -1,18 +1,11 @@
 #!/usr/bin/env bash
 
-# This tags and uploads an image to Docker Hub
+dockerpath=dstaflund/prediction:1.0
 
-# Step 1:
-# This is your Docker ID/path
-# dockerpath=<>
+kubectl run prediction --image=docker.io/${dockerpath} --labels="app=prediction"
+kubectl get pods
 
-# Step 2
-# Run the Docker Hub container with kubernetes
+PREDICTION_POD=$(kubectl get pods -l app=prediction -o jsonpath='{.items[0].metadata.name}')
+kubectl port-forward "${PREDICTION_POD}" 8000:80
 
-
-# Step 3:
-# List kubernetes pods
-
-# Step 4:
-# Forward the container port to a host
 
