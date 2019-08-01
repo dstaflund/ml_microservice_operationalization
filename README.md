@@ -22,7 +22,7 @@ This project consists of the following:
 
 The project also contains the following:
 
-* A configuration file that CircleCI uses to run QA tests against the source code every time it's checked into GitHub _(**config.yml**)_
+* A configuration file that CircleCI uses to run QA tests against every time the source code is checked into GitHub _(**config.yml**)_
 * A **.gitignore** file
 * Files showing expected output of the application _(**docker_out.txt, kubernetes_out.txt, kubernetes.out.txt**)_ 
 * This **README.md** file
