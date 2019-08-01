@@ -2,7 +2,7 @@
 
 ## Project Description
 
-In this project, I have been given a pre-trained, `sklearn` model trained to predict housing prices in
+In this project, I have been given an `sklearn` model pre-trained to predict housing prices in
 Boston according to several measures, such as average rooms in a home and data about highway access,
 teacher-to-pupil ratios, and so on. I expose the model as a Machine Learning Microservice API using
 Python Flask, and operationalize its deployment using Docker and Kubernetes.
