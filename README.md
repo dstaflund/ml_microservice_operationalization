@@ -30,21 +30,13 @@ The project also contains the following:
 
 ### Project Scripts
 
-To run this application, you need to do the following:
-
-1.  Clone the git repository at https://github.com/dstaflund/ml_microservice_operationalization.git
-1.  Generate the Docker container for this project
-1.  Upload the container to Docker Hub
-1.  Deploy the container to Kubernetes
-
-
 #### Clone the Git Repository
 
 To clone the git repository, do the following:
 
 1.  Download and install git on your operating system
 1.  Clone the repository at https://github.com/dstaflund/ml_microservice_operationalization.git onto your system
-1.  Open a command-prompt and to the top-level directory of the repository
+1.  Open a command-prompt and go to the top-level directory of the repository
 
 
 #### Generate the Docker container
