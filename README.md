@@ -13,7 +13,7 @@ Python Flask, and operationalize its deployment using Docker and Kubernetes.
 This project consists of the following:
 
 * An `sklearn` model pre-trained to predict housing prices in Boston _(**housing.csv, boston_housing_prediction.joblib**)_
-* A Python Flash application that acts as a Machine Learning Microservice API for the data _(**app.py, requirements.txt**)_
+* A Python Flask application that acts as a Machine Learning Microservice API for the data _(**app.py, requirements.txt**)_
 * A Linux Makefile to prepare the development environment, and to test and lint the source files _(**Makefile**)_
 * A Dockerfile to create a Docker container of the Machine Learning Learning Microservice API _(**Dockerfile**)_
 * A shell script to automate generation of the Docker container _(**run_docker.sh**)_
