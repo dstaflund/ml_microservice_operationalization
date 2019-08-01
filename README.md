@@ -12,20 +12,20 @@ Python Flask, and operationalize its deployment using Docker and Kubernetes.
 
 This project consists of the following:
 
-* An `sklearn` model pre-trained to predict housing prices in Boston _(housing.csv, boston_housing_prediction.joblib)_
-* A Python Flash application that acts as a Machine Learning Microservice API for the data _(app.py, requirements.txt)_
-* A Linux Makefile to prepare the development environment, and to test and lint the source files _(Makefile)_
-* A Dockerfile to create a Docker container of the Marking Learning Microservice API _(Dockerfile)_
-* A shell script to automate generation of the Docker container _(run_docker.sh)_
-* A shell script to automate uploading of the container to Docker Hub _(upload_docker.sh, password.txt)_
-* A shell script to download the container from Docker Hub and deploy it into a Kubernetes environment _(run_kubernetes.sh)_
+* An `sklearn` model pre-trained to predict housing prices in Boston _(**housing.csv, boston_housing_prediction.joblib**)_
+* A Python Flash application that acts as a Machine Learning Microservice API for the data _(**app.py, requirements.txt**)_
+* A Linux Makefile to prepare the development environment, and to test and lint the source files _(**Makefile**)_
+* A Dockerfile to create a Docker container of the Marking Learning Microservice API _(**Dockerfile**)_
+* A shell script to automate generation of the Docker container _(**run_docker.sh**)_
+* A shell script to automate uploading of the container to Docker Hub _(**upload_docker.sh, password.txt**)_
+* A shell script to download the container from Docker Hub and deploy it into a Kubernetes environment _(**run_kubernetes.sh**)_
 
 The project also contains the following:
 
-* A configuration file that CircleCI uses to run QA tests against the source code every time it's checked into GitHub _(config.yml)_
-* A .gitignore file
-* Files showing expected output of the application _(docker_out.txt, kubernetes_out.txt, kubernetes.out.txt)_ 
-* This README.md file
+* A configuration file that CircleCI uses to run QA tests against the source code every time it's checked into GitHub _(**config.yml**)_
+* A **.gitignore** file
+* Files showing expected output of the application _(**docker_out.txt, kubernetes_out.txt, kubernetes.out.txt**)_ 
+* This **README.md** file
 
 
 ### Project Scripts
