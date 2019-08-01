@@ -43,7 +43,7 @@ To clone the git repository, do the following:
 
 To generate the Docker container, do the following:
 
-1.  Download and install Docker for your operating system _(NB:  This instructions assume you are running a Linux-based operating system)_
+1.  Download and install Docker for your operating system _(NB:  These instructions assume you are running a Linux-based operating system)_
 1.  Run the following command from your command-prompt:
 ```shell script
 >  ./run_docker.sh
