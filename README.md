@@ -1,42 +1,126 @@
 [![CircleCI](https://circleci.com/gh/dstaflund/ml_microservice_operationalization.svg?style=svg)](https://circleci.com/gh/dstaflund/ml_microservice_operationalization)
 
-## Project Overview
+## Project Description
 
-In this project, you will apply the skills you have acquired in this course to operationalize a Machine Learning Microservice API. 
+In this project, I have been given a pre-trained, `sklearn` model trained to predict housing prices in
+Boston according to several measures, such as average rooms in a home and data about highway access,
+teacher-to-pupil ratios, and so on. I expose the model as a Machine Learning Microservice API using
+Python Flask, and operationalize its deployment using Docker and Kubernetes.
 
-You are given a pre-trained, `sklearn` model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. You can read more about the data, which was initially taken from Kaggle, on [the data source site](https://www.kaggle.com/c/boston-housing). This project tests your ability to operationalize a Python flask app—in a provided file, `app.py`—that serves out predictions (inference) about housing prices through API calls. This project could be extended to any pre-trained machine learning model, such as those for image recognition and data labeling.
 
-### Project Tasks
+### Project Files
 
-Your project goal is to operationalize this working, machine learning microservice using [kubernetes](https://kubernetes.io/), which is an open-source system for automating the management of containerized applications. In this project you will:
-* Test your project code using linting
-* Complete a Dockerfile to containerize this application
-* Deploy your containerized application using Docker and make a prediction
-* Improve the log statements in the source code for this application
-* Configure Kubernetes and create a Kubernetes cluster
-* Deploy a container using Kubernetes and make a prediction
-* Upload a complete Github repo with CircleCI to indicate that your code has been tested
+This project consists of the following:
 
-You can find a detailed [project rubric, here](https://review.udacity.com/#!/rubrics/2576/view).
+* A pre-trained `sklearn` model trained to predict housing prices in Boston _(housing.csv, boston_housing_prediction.joblib)_
+* A Python Flash application that acts as a Machine Learning Microservice API for the data _(app.py, requirements.txt)_
+* A Linux Makefile to prepare the development environment, and to test and lint the source files _(Makefile)_
+* A Dockerfile to create a Docker container of the Marking Learning Microservice API _(Dockerfile)_
+* A shell script to automate generation of the Docker container _(run_docker.sh)_
+* A shell script to automate uploading of the container to Docker Hub _(upload_docker.sh, password.txt)_
+* A shell script to download the container from Docker Hub and deploy it into a Kubernetes environment _(run_kubernetes.sh)_
 
-**The final implementation of the project will showcase your abilities to operationalize production microservices.**
+The project also contains the following:
 
----
+* A configuration file that CircleCI uses to run QA tests against the source code every time it's checked into GitHub _(config.yml)_
+* A .gitignore file
+* Files showing expected output of the application _(docker_out.txt, kubernetes_out.txt, kubernetes.out.txt)_ 
+* This README.md file
 
-## Setup the Environment
 
-* Create a virtualenv and activate it
-* Run `make install` to install the necessary dependencies
+### Project Scripts
 
-### Running `app.py`
+To run this application, you need to do the following:
 
-1. Standalone:  `python app.py`
-2. Run in Docker:  `./run_docker.sh`
-3. Run in Kubernetes:  `./run_kubernetes.sh`
+1.  Clone the git repository at https://github.com/dstaflund/ml_microservice_operationalization.git
+1.  Generate the Docker container for this project
+1.  Upload the container to Docker Hub
+1.  Deploy the container to Kubernetes
 
-### Kubernetes Steps
 
-* Setup and Configure Docker locally
-* Setup and Configure Kubernetes locally
-* Create Flask app in Container
-* Run via kubectl
+#### Clone the Git Repository
+
+To clone the git repository, do the following:
+
+1.  Download and install git on your operating system
+1.  Clone the repository at https://github.com/dstaflund/ml_microservice_operationalization.git onto your system
+1.  Open a command-prompt and to the top-level directory of the repository
+
+
+#### Generate the Docker container
+
+To generate the Docker container, do the following:
+
+1.  Download and install Docker for your operating system _(NB:  This instructions assume you are running a Linux-based operating system)_
+1.  Run the following command from your command-prompt:
+```shell script
+>  ./run_docker.sh
+```
+
+When you run this script, the following will occur:
+
+* A Docker image called **dstaflund/prediction:1.0** will be created based on the Dockerfile
+* Your Docker images will be listed with the new image appearing among them
+* The Machine Learning Microservice API will be started and exposed for use on port 8000
+
+To verify that the API works as expected, open another command-prompt and run the following:
+
+```shell script
+> ./make_prediction.sh
+```
+
+When you run this script, a call will be sent to the API on port 8000, and the response a be displayed in the
+console.  The response will look something like the one found in _/output_text_files/kubernetes.out.txt_.
+
+Output will also be seen in console you used to run docker.  It's output will be similar to that found in
+_/output_text_files/docker_out.txt_.
+
+When you're done testing docker, press CTRL-C in the original console to stop the API.
+
+
+#### Upload the container to Docker Hub
+
+The docker upload script is custom-tailored to upload a container named **dstaflund/prediction:1.0** to my
+personal Docker Hub, so you won't be able to run it as I have not provided the password.  However, you would go
+through the motions of uploading this container to Docker Hub, by doing the following:
+
+1.  Open a Docker Hub account
+1.  Enter your password into the _password.txt_ file
+1.  Open a command-prompt and enter the following:
+
+```shell script
+> ./upload_docker.sh
+```
+
+When executed, this script would upload the above-named container into Docker Hub.
+
+#### Deploy the container to Kubernetes
+
+To run the Docker container in a local Kubernetes environment, do the following:
+
+1.  Download and install **kubectl** for your operating system
+1.  Download and install **minikube** for your operating system
+1.  Open a command-prompt and enter the following:
+
+```shell script
+> ./run_kubernetes.sh
+```
+
+When you run this script, the following will occur:
+
+* The Docker image will be downloaded from Docker Hub and deployed to your Kubernetes cluster
+* Your Kubernetes pods will be listed with a new **prediction** pod appearing among them
+* The Machine Learning Microservice API will be started and exposed for use on port 8000
+
+Output of the run script will be similar to that found in _kubernetes_out.txt_.
+
+To verify that the API works as expected, open another command-prompt and run the following:
+
+```shell script
+> ./make_prediction.sh
+```
+
+When you run this script, a call will be sent to the API on port 8000, and the response a be displayed in the
+console.  The response will look something like the one found in _/output_text_files/kubernetes.out.txt_.
+
+When you're done testing docker, press CTRL-C in the original console to stop the API.
