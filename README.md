@@ -15,7 +15,7 @@ This project consists of the following:
 * An `sklearn` model pre-trained to predict housing prices in Boston _(**housing.csv, boston_housing_prediction.joblib**)_
 * A Python Flask application that acts as a Machine Learning Microservice API for the data _(**app.py, requirements.txt**)_
 * A Linux Makefile to prepare the development environment, and to test and lint the source files _(**Makefile**)_
-* A Dockerfile to create a Docker container of the Machine Learning Learning Microservice API _(**Dockerfile**)_
+* A Dockerfile to create a Docker container of the Machine Learning Microservice API _(**Dockerfile**)_
 * A shell script to automate generation of the Docker container _(**run_docker.sh**)_
 * A shell script to automate uploading of the container to Docker Hub _(**upload_docker.sh, password.txt**)_
 * A shell script to download the container from Docker Hub and deploy it into a Kubernetes environment _(**run_kubernetes.sh**)_
